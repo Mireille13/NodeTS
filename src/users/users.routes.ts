@@ -73,7 +73,7 @@ userRouter.post("/login", async(req : Request, res : Response) => {
     };
 });
 
-//updates info of user with that specified id
+//updates the details of a specified user
 userRouter.put("/user/:id", async(req : Request, res : Response) => {
     try{
         const { username, email, password } = req.body;
