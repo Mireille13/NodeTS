@@ -36,7 +36,7 @@ export const findAll = async (): Promise<UnitUser[]> => Object.values(users);
 export const findOne = async (id: string): Promise<UnitUser> => users[id];
 
 //promise resolves to a newly created UnitUser object
-export const create = async (userData: UnitUser): Promise<UnitUser | null> => {
+export const create = async (userData: UnitUser): Promise<null | UnitUser> => {
 
     let id = random();
     let check_user = await findOne(id);
