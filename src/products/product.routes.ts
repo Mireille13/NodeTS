@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 export const productRouter = express.Router();
 
+//retrieve all products
 productRouter.get("/products", async(req: Request, res: Response) => {
     try{
         const allProducts = await database.findAll();
@@ -17,6 +18,7 @@ productRouter.get("/products", async(req: Request, res: Response) => {
     };
 });
 
+//retrieve one specific product according to id
 productRouter.get("/product/:id", async(req : Request, res : Response) => {
     try{
         const product = await database.findOne(req.params.id);
@@ -29,6 +31,7 @@ productRouter.get("/product/:id", async(req : Request, res : Response) => {
     };
 });
 
+//creates a new product and adds it to the database
 productRouter.post("/product", async(req : Request, res : Response) => {
     try{
         const {name, price, quantity, image} = req.body;
@@ -42,6 +45,7 @@ productRouter.post("/product", async(req : Request, res : Response) => {
     };
 });
 
+//updates a specified product according to id
 productRouter.put("/product/:id", async(req : Request, res : Response) => {
     try{
         const id = req.params.id;
@@ -57,6 +61,7 @@ productRouter.put("/product/:id", async(req : Request, res : Response) => {
     };
 });
 
+//deletes a specified product according to id
 productRouter.delete("/product/:id", async(req : Request, res : Response) => {
     try{
         const getProduct = await database.findOne(req.params.id);
