@@ -4,6 +4,7 @@ import fs from "fs";
 
 let products: Products = loadProducts();
 
+//reads data from products.json
 function loadProducts(): Products{
     try{
         const data = fs.readFileSync("./products.json", "utf-8");
@@ -14,6 +15,7 @@ function loadProducts(): Products{
     };
 };
 
+//saves product object to products.json
 function saveProducts() {
     try{
         fs.writeFileSync("./products.json", JSON.stringify(products), "utf-8");
@@ -23,8 +25,14 @@ function saveProducts() {
     };
 };
 
+//promise resolves to an array of unitProduct objects
+//extracts products from product object
 export const findAll = async () : Promise<UnitProduct[]> => Object.values(products);
+
+//promise resolves to UnitUser object corresponding w/ id in products object
 export const findOne = async (id: string) : Promise<UnitProduct> => products[id];
+
+//promise resolves to a newly created UnitUser object
 export const create = async (productInfo : Product) : Promise< null | UnitProduct> => {
     let id = random();
     let product = await findOne(id);
