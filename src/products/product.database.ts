@@ -48,6 +48,19 @@ export const create = async (productInfo : Product) : Promise< null | UnitProduc
       return products[id];
 }
 
+export const update = async(id : string, updateValues : Product) : Promise<UnitProduct | null> => {
+    const product = await findOne(id);
+    if(!product){
+        return null;
+    }
+    products[id] = {
+        id,
+        ...updateValues
+    }
+    saveProducts();
+    return products[id];
+}
+
 export const remove = async(id: string) : Promise<null | void> => {
   const product = await findOne(id);
   if(!product){

@@ -53,9 +53,9 @@ export const create = async (userData: UnitUser): Promise<null | UnitUser> => {
         email: userData.email,
         password: hashedPassword
     };
-    user[id] = user;
+    users[id] = user;
     saveUsers();
-    password: hashedPassword;
+    return user;
 };
 
 //promise resolves to a UnitUser object if a user w/ the specified email exists or not
